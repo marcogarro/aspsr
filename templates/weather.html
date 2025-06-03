@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Consulta il meteo</h2>
+<form method="post" class="mb-4">
+  <div class="input-group">
+    <input type="text" class="form-control" name="city" placeholder="Citt\u00e0 italiana" required>
+    <button class="btn btn-primary" type="submit">Cerca</button>
+  </div>
+</form>
+
+{% if weather %}
+  {% if weather.error %}
+  <div class="alert alert-danger">{{ weather.error }}</div>
+  {% else %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Meteo per {{ weather.city }}</h5>
+      <p class="card-text">Temperatura: {{ weather.temperature }} \u00b0C</p>
+      <p class="card-text">Vento: {{ weather.windspeed }} km/h</p>
+      <p class="card-text">Codice Meteo: {{ weather.weathercode }}</p>
+    </div>
+  </div>
+  {% endif %}
+{% endif %}
+{% endblock %}
